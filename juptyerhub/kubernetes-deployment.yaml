@@ -1,0 +1,43 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: jupyterhub-deployment
+  labels:
+    app: jupyterhub-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyterhub-deployment
+  template:
+    metadata:
+      labels:
+        app: jupyterhub-deployment
+    spec:
+      containers:
+      - name: jupyterhub
+        image: us.gcr.io/%GCLOUD_PROJECT_ID%/jupyterhub:%GIT_COMMIT_SHA%
+        ports:
+        - containerPort: 8000        
+        env:
+        - name: OAUTH_CALLBACK_URL
+          value: https://jupyter.derekpedersen.io
+        - name: OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: jupyterhub-config
+              key: oauth_client_id
+        - name: OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: jupyterhub-config
+              key: oauth_client_secret
+        command: ["jupyterhub"]
+        volumeMounts:
+          - name: jupyterhub-config
+            mountPath: /etc/jupyterhub
+      volumes:
+        - name: jupyterhub-config
+          secret:
+            secretName: jupyterhub-config
+            defaultMode: 0777
