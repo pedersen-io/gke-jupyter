@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: jupyterhub-deployment
+    app: jupyterhub-derek-deployment
   name: jupyterhub-service
   namespace: default
 spec:
@@ -12,5 +12,5 @@ spec:
     protocol: TCP
     targetPort: 8000
   selector:
-    app: jupyterhub-deployment
+    app: jupyterhub-derek-deployment
   type: ClusterIP
