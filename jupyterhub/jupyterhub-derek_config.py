@@ -47,3 +47,10 @@ c.JupyterHub.spawner_class = 'kubespawner.KubeSpawner'
 # /etc/jupyter/jupyter_notebook_config.py
 c.Spawner.notebook_dir = '~/assignments'
 c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
+
+# k8s spawner settings
+c.JupyterHub.ip = os.environ['PROXY_PUBLIC_SERVICE_HOST']
+c.JupyterHub.port = int(os.environ['PROXY_PUBLIC_SERVICE_PORT'])
+
+# the hub should listen on all interfaces, so the proxy can access it
+c.JupyterHub.hub_ip = '0.0.0.0'
