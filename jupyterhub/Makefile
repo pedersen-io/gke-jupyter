@@ -4,7 +4,7 @@ secret:
 	cat jupyterhub-derek_config.py | base64 >> jupyterhub-derek_config.txt
 
 docker:
-	docker build --no-cache ./ -t jupyterhub-derek
+	docker build ./ -t jupyterhub-derek
 
 publish:
 	docker tag jupyterhub-derek us.gcr.io/${GCLOUD_PROJECT_ID}/jupyterhub-derek:${GIT_COMMIT_SHA}
