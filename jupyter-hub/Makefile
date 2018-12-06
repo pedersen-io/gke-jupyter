@@ -1,8 +1,5 @@
 export GIT_COMMIT_SHA = $(shell git rev-parse HEAD)
 
-secret:
-	cat jupyter-hub_config.py | base64 >> jupyter-hub_config.txt
-
 docker:
 	docker build ./ -t jupyter-hub
 

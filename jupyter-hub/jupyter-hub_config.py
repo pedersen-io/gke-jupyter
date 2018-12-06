@@ -42,7 +42,7 @@ c.Authenticator.admin_users = {'derekpedersen'}
 c.JupyterHub.spawner_class = 'kubespawner.KubeSpawner'
 
 # kubespawner config
-#c.KubeSpawner.image = Unicode('us.gcr.io/derekpedersen-195304/jupyterhub-datascience-notebook:latest')
+c.KubeSpawner.image = Unicode('us.gcr.io/derekpedersen-195304/jupyter-datascience-notebook:latest')
 
 # start single-user notebook servers in ~/assignments,
 # with ~/assignments/Welcome.ipynb as the default landing page
