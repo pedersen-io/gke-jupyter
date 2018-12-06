@@ -12,6 +12,7 @@ if not os.path.exists(ssl_dir):
 # Allows multiple single-server per user
 c.JupyterHub.allow_named_servers = True
 
+# ssl is handled by nginx so this is not needed
 # https on :443
 # c.JupyterHub.port = 443
 # c.JupyterHub.ssl_key = pjoin(ssl_dir, 'ssl.key')
@@ -38,8 +39,10 @@ c.Authenticator.admin_users = {'derekpedersen'}
 # To use a different spawner, uncomment `spawner_class` and set to desired
 # spawner (e.g. SudoSpawner). Follow instructions for desired spawner
 # configuration.
-# c.JupyterHub.spawner_class = 'sudospawner.SudoSpawner'
 c.JupyterHub.spawner_class = 'kubespawner.KubeSpawner'
+
+# kubespawner config
+c.KubeSpawner.image = Unicode('us.gcr.io/derekpedersen-195304/jupyterhub-datascience-notebook:latest')
 
 # start single-user notebook servers in ~/assignments,
 # with ~/assignments/Welcome.ipynb as the default landing page
@@ -48,11 +51,6 @@ c.JupyterHub.spawner_class = 'kubespawner.KubeSpawner'
 c.Spawner.notebook_dir = '~/assignments'
 c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
 
-# k8s spawner settings
-# c.JupyterHub.ip = os.environ['PROXY_PUBLIC_SERVICE_HOST']
-# c.JupyterHub.port = int(os.environ['PROXY_PUBLIC_SERVICE_PORT'])
-
 # the hub should listen on all interfaces, so the proxy can access it
 c.JupyterHub.hub_ip = '0.0.0.0'
-c.JupyterHub.hub_connect_ip = '10.43.245.135'
-# c.JupyterHub.hub_connect_port = 8000
+c.JupyterHub.hub_connect_ip = '10.43.245.135' # IP for k8s jupyterhub-service

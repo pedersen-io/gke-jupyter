@@ -1,14 +1,14 @@
 export GIT_COMMIT_SHA = $(shell git rev-parse HEAD)
 
 secret:
-	cat jupyterhub-derek_config.py | base64 >> jupyterhub-derek_config.txt
+	cat jupyter-hub_config.py | base64 >> jupyter-hub_config.txt
 
 docker:
-	docker build ./ -t jupyterhub-derek
+	docker build ./ -t jupyter-hub
 
 publish:
-	docker tag jupyterhub-derek us.gcr.io/${GCLOUD_PROJECT_ID}/jupyterhub-derek:${GIT_COMMIT_SHA}
-	gcloud docker -- push us.gcr.io/${GCLOUD_PROJECT_ID}/jupyterhub-derek:${GIT_COMMIT_SHA}
+	docker tag jupyter-hub us.gcr.io/${GCLOUD_PROJECT_ID}/jupyter-hub:${GIT_COMMIT_SHA}
+	gcloud docker -- push us.gcr.io/${GCLOUD_PROJECT_ID}/jupyter-hub:${GIT_COMMIT_SHA}
 
 deploy:
 	sed -e 's/%GCLOUD_PROJECT_ID%/${GCLOUD_PROJECT_ID}/g' -e 's/%GIT_COMMIT_SHA%/${GIT_COMMIT_SHA}/g' ./kubernetes-deployment.yaml > deployment.sed.yaml
@@ -16,6 +16,6 @@ deploy:
 	kubectl apply -f ./kubernetes-service.yaml
 
 delete-kubernetes:
-	kubectl delete deployment jupyterhub-derek-deployment
+	kubectl delete deployment jupyter-hub-deployment
 
 kubernetes: docker publish deploy
