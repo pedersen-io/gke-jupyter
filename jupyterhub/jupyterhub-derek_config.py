@@ -54,4 +54,5 @@ c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
 
 # the hub should listen on all interfaces, so the proxy can access it
 c.JupyterHub.hub_ip = '0.0.0.0'
+c.JupyterHub.hub_connect_ip = '10.43.245.135'
 # c.JupyterHub.hub_connect_port = 8000

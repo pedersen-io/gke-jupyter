@@ -11,6 +11,10 @@ spec:
     port: 8000
     protocol: TCP
     targetPort: 8000
+  - name: 8081-to-8081-tcp
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
   selector:
     app: jupyterhub-derek-deployment
   type: ClusterIP

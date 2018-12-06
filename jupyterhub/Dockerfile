@@ -1,9 +1,9 @@
-FROM jupyterhub/jupyterhub:0.9.4
+FROM jupyterhub/jupyterhub
 
 RUN mkdir -p /etc/jupyterhub-derek
-RUN pip install oauthenticator && \
-    pip install jupyter && \ 
-    pip install jupyterhub-kubespawner
+RUN pip3 install oauthenticator && \
+    pip3 install jupyter && \ 
+    pip3 install jupyterhub-kubespawner
 
 COPY ./jupyterhub-derek_config.py /etc/jupyterhub-derek
 
