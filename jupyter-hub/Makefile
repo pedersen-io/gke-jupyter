@@ -1,6 +1,7 @@
 export GIT_COMMIT_SHA = $(shell git rev-parse HEAD)
 
 docker:
+	sed -e 's/%GCLOUD_PROJECT_ID%/${GCLOUD_PROJECT_ID}/g' ./jupyter-hub_config.template.py > jupyter-hub_config.py
 	docker build ./ -t jupyter-hub
 
 publish:
