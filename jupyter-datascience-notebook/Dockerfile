@@ -1,9 +1,6 @@
-ARG BASE_IMAGE=jupyter/datascience-notebook
-FROM $BASE_IMAGE
-
-ADD install_jupyterhub /tmp/install_jupyterhub
-ARG JUPYTERHUB_VERSION=master
+FROM jupyter/datascience-notebook
 
 # install pinned jupyterhub and ensure notebook is installed
-RUN python3 /tmp/install_jupyterhub && \
+RUN python3 -m pip install jupyter && \
+    python3 -m pip install jupyterhub && \
     python3 -m pip install notebook
