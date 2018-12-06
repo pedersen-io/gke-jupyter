@@ -18,7 +18,8 @@ spec:
       - name: jupyterhub-derek
         image: us.gcr.io/%GCLOUD_PROJECT_ID%/jupyterhub-derek:%GIT_COMMIT_SHA%
         ports:
-        - containerPort: 8000        
+        - containerPort: 8000    
+        - containerPort: 8081        
         env:
         - name: OAUTH_CALLBACK_URL
           value: https://jupyter.derekpedersen.io/hub/oauth_callback

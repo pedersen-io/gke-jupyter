@@ -50,7 +50,7 @@ c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
 
 # k8s spawner settings
 # c.JupyterHub.ip = os.environ['PROXY_PUBLIC_SERVICE_HOST']
-# c.JupyterHub.port = int(os.environ['PROXY_PUBLIC_SERVICE_PORT'])
+c.JupyterHub.port = 8000
 
 # the hub should listen on all interfaces, so the proxy can access it
 c.JupyterHub.hub_ip = '0.0.0.0'
