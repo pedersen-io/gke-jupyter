@@ -42,7 +42,7 @@ c.Authenticator.admin_users = {'derekpedersen'}
 c.JupyterHub.spawner_class = 'kubespawner.KubeSpawner'
 
 # kubespawner config
-c.KubeSpawner.image = Unicode('us.gcr.io/derekpedersen-195304/jupyterhub-datascience-notebook:latest')
+#c.KubeSpawner.image = Unicode('us.gcr.io/derekpedersen-195304/jupyterhub-datascience-notebook:latest')
 
 # start single-user notebook servers in ~/assignments,
 # with ~/assignments/Welcome.ipynb as the default landing page
@@ -53,4 +53,4 @@ c.Spawner.args = ['--NotebookApp.default_url=/notebooks/Welcome.ipynb']
 
 # the hub should listen on all interfaces, so the proxy can access it
 c.JupyterHub.hub_ip = '0.0.0.0'
-c.JupyterHub.hub_connect_ip = '10.43.245.135' # IP for k8s jupyterhub-service
+c.JupyterHub.hub_connect_ip = '10.43.254.2' # IP for k8s jupyterhub-service
