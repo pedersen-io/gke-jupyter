@@ -1,34 +1,35 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: jupyterhub-derek-deployment
+  name: jupyter-hub-deployment
   labels:
-    app: jupyterhub-derek-deployment
+    app: jupyter-hub-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jupyterhub-derek-deployment
+      app: jupyter-hub-deployment
   template:
     metadata:
       labels:
-        app: jupyterhub-derek-deployment
+        app: jupyter-hub-deployment
     spec:
       containers:
-      - name: jupyterhub-derek
-        image: us.gcr.io/%GCLOUD_PROJECT_ID%/jupyterhub-derek:%GIT_COMMIT_SHA%
+      - name: jupyter-hub
+        image: us.gcr.io/%GCLOUD_PROJECT_ID%/jupyter-hub:%GIT_COMMIT_SHA%
         ports:
-        - containerPort: 8000        
+        - containerPort: 8000    
+        - containerPort: 8081        
         env:
         - name: OAUTH_CALLBACK_URL
           value: https://jupyter.derekpedersen.io/hub/oauth_callback
         - name: OAUTH_CLIENT_ID
           valueFrom:
             secretKeyRef:
-              name: jupyterhub-config
+              name: jupyter-hub-config
               key: oauth_client_id
         - name: OAUTH_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
-              name: jupyterhub-config
+              name: jupyter-hub-config
               key: oauth_client_secret

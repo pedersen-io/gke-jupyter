@@ -1,6 +1,6 @@
 version: "2"
 services:
   api:
-    image: jupyterhub-derek:latest
+    image: jupyter-hub:latest
     ports:
       - "8000:8000"
