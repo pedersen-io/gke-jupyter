@@ -19,7 +19,14 @@ spec:
         image: us.gcr.io/%GCLOUD_PROJECT_ID%/jupyter-hub:%GIT_COMMIT_SHA%
         ports:
         - containerPort: 8000    
-        - containerPort: 8081        
+        - containerPort: 8081
+        resources:
+          limits:
+            cpu: "75m"
+            memory: "500Mi"
+          requests:
+            cpu: "10m"
+            memory: "250Mi"        
         env:
         - name: OAUTH_CALLBACK_URL
           value: https://jupyter.derekpedersen.io/hub/oauth_callback
